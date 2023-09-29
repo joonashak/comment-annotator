@@ -1,6 +1,9 @@
 #!/bin/bash
 
-grep_result=$(grep -RnE "^\s*(//|#|\!|'|;)\s*(TODO|FIXME).*")
+default_pattern="^\s*(//|#|\!|'|;)\s*(TODO|FIXME).*"
+pattern=${PATTERN:-$default_pattern}
+
+grep_result=$(grep -RnE "$pattern")
 
 set_ann_type () {
   if [[ $1 =~ "TODO" ]]
