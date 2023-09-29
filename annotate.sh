@@ -1,7 +1,7 @@
 #!/bin/bash
 
-GREP=$(grep -Rn "// TODO:")
+grep_result=$(grep -RnE "^\s*(//|#|\!|'|;)\s*(TODO|FIXME).*")
 
 while IFS=':' read -r path line message; do
   echo "::warning file=${path},line=${line}::${message}"
-done <<< "$GREP"
+done <<< "$grep_result"
