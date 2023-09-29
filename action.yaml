@@ -5,6 +5,9 @@ inputs:
   pattern:
     description: Override default regex pattern passed to grep.
     required: false
+  include:
+    description: Include only files matching given glob pattern. By default, all files are included.
+    required: false
 
 runs:
   using: composite
@@ -15,3 +18,4 @@ runs:
       shell: bash
       env:
         PATTERN: ${{ inputs.pattern }}
+        INCLUDE: ${{ inputs.include }}
