@@ -3,7 +3,7 @@
 default_pattern="^\s*(//|#|\!|'|;)\s*(TODO|FIXME).*"
 pattern=${PATTERN:-$default_pattern}
 
-grep_result=$(grep -RnE "$pattern")
+grep_result=$(grep -RnE --exclude-dir=.git "$pattern")
 
 set_ann_type () {
   if [[ $1 =~ "TODO" ]]
