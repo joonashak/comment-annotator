@@ -1,0 +1,8 @@
+name: Annotate Comments
+description: Create GitHub Workflow annotations from comments in code.
+
+runs:
+  using: composite
+  steps:
+    - run: annotate.sh
+      shell: bash
