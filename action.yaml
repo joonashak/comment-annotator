@@ -1,5 +1,6 @@
 name: Annotate Comments
-description: Create GitHub Workflow annotations from comments in code.
+description: Create GitHub Actions annotations from comments in code.
+author: Joonas Häkkinen
 
 inputs:
   pattern:
@@ -8,6 +9,10 @@ inputs:
   include:
     description: Include only files matching given glob pattern. By default, all files are included.
     required: false
+  working-dir:
+    description: Directory to run action in. Note that setting this also affects the scope of include param.
+    required: false
+    default: .
 
 runs:
   using: composite
@@ -16,6 +21,7 @@ runs:
       shell: bash
     - run: annotate.sh
       shell: bash
+      working-directory: ${{ inputs.working-dir }}
       env:
         PATTERN: ${{ inputs.pattern }}
         INCLUDE: ${{ inputs.include }}
